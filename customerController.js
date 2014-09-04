@@ -3,6 +3,10 @@ customerApp.controller('customerController', function ($scope) {
 	$scope.data = [];
 	
 	$scope.columns = {
+		customerNumber : {
+			title: 'Number',
+			content: function(row) { return row.customerNumber; }
+		},
 		firstName : {
 			title: 'First Name',
 			content: function(row) { return row.customerName.firstname; }
@@ -29,7 +33,9 @@ customerApp.controller('customerController', function ($scope) {
 		rank = Date.now();
 		for (i = 0; i < $scope.nameCount; i++) {
 
-			newCustomer = {};
+			newCustomer = {
+				customerNumber: rank % 1000000
+			};
 			
 			// Name
 			model = new nameModel();

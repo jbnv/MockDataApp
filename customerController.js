@@ -1,7 +1,5 @@
 customerApp.controller('customerController', function ($scope) {
 
-	$scope.data = [];
-	
 	$scope.columns = {
 		customerNumber : {
 			title: 'Number',
@@ -23,6 +21,8 @@ customerApp.controller('customerController', function ($scope) {
 	
 	$scope.init = function() {
 		$scope.data = [];
+		$scope.nameCount = 10;
+		$scope.namePattern = 'USA';
 	};
 	
 	// Generator
@@ -49,5 +49,5 @@ customerApp.controller('customerController', function ($scope) {
 		}
 	};
 
-	$scope.makeCustomers(); //TEMP
+	$scope.init();
 });

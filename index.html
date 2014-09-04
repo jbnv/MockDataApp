@@ -9,6 +9,7 @@
 <script src="customerApp.js" charset="utf-8"></script>
 <script src="customerController.js" charset="utf-8"></script>
 <style>
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
 </style>
 </head>
 
@@ -20,7 +21,8 @@
 			<li><a></a></li> 
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
-			<li><a></a></li>
+			<li><a data-ng-click="makeCustomers();">Generate</a></li>
+			<li><a data-ng-click="init();">Reset</a></li>
 		</ul>
 	</div>
 </nav>

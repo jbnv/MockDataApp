@@ -16,6 +16,10 @@ customerApp.controller('customerController', function ($scope) {
 		surname :  {
 			title: 'Surname',
 			content: function(row) { return row.customerName.surname; }
+		},
+		address :  {
+			title: 'Address',
+			content: function(row) { return row.address; }
 		}
 	};
 	
@@ -30,11 +34,15 @@ customerApp.controller('customerController', function ($scope) {
 	$scope.namePattern = 'USA';
 	
 	$scope.makeCustomers = function() {
+	
+		lAddressModel = new addressModel();
+	
 		rank = Date.now();
 		for (i = 0; i < $scope.nameCount; i++) {
 
 			newCustomer = {
-				customerNumber: rank % 1000000
+				customerNumber: rank % 1000000,
+				address: lAddressModel.makeAddress(rank)
 			};
 			
 			// Name

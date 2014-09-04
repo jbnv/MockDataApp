@@ -1,0 +1,1 @@
+var customerApp = angular.module('customerApp', ['ui.bootstrap']);

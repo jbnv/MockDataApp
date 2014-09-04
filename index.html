@@ -1,0 +1,39 @@
+<html>
+<head>
+<!-- Library -->
+<script src="lib/angular.js" charset="utf-8"></script>
+<script src="lib/ui-bootstrap-tpls-0.11.0.js" charset="utf-8"></script>
+<link rel="stylesheet" type="text/css" href="lib/bootstrap.css"></link>
+<!-- Application -->
+<script src="customerApp.js" charset="utf-8"></script>
+<script src="customerController.js" charset="utf-8"></script>
+<style>
+</style>
+</head>
+
+<body data-ng-app="customerApp" data-ng-controller="customerController">
+
+<nav role="navigation" class="navbar navbar-default">
+	<div class="navbar-header">
+		<ul class="nav navbar-nav">
+			<li><a></a></li> 
+		</ul>
+		<ul class="nav navbar-nav navbar-right">
+			<li><a></a></li>
+		</ul>
+	</div>
+</nav>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th data-ng-repeat="column in columns">{{column.title}}</th>
+		</tr>
+	</thead>
+	<tr data-ng-repeat="row in data">
+		<td data-ng-repeat="column in columns">{{column.content(row)}}</td>
+	</tr>
+</table>
+
+</body>
+</html>

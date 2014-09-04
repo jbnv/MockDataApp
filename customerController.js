@@ -22,7 +22,26 @@ customerApp.controller('customerController', function ($scope) {
 			content: function(row) { return row.address; }
 		}
 	];
+
+	var dateTypes = [
+		['birth','Birth Date'],
+		['init','First Purchase'],
+		['last','Most Recent Purchase']
+	];
 	
+	for (var i in dateTypes) {
+		dateType = dateTypes[i];
+		slug     = dateType[0];
+		title    = dateType[1];
+		rowDateFunction = function(slug) { return function(row) { 
+			o = row.dates[slug];
+			return o ? o.toDateString() : null; 
+		}};
+		$scope.columns.push({
+			title: title,
+			content: rowDateFunction(slug)
+		});
+	}
 	
 	$scope.init = function() {
 		$scope.data = [];
@@ -38,6 +57,18 @@ customerApp.controller('customerController', function ($scope) {
 	
 		lAddressModel = new addressModel();
 	
+		// Date of birth: Make a broad range of age between 18 and 75.
+		oMinBirthDate = new DateMath();
+		oMinBirthDate.addYears(-75);
+		oMaxBirthDate = new DateMath();
+		oMaxBirthDate.addYears(-18);
+		lBirthDateGenerator = new RandomDateGenerator();
+		lBirthDateGenerator.setMinimum(oMinBirthDate.getInternal());
+		lBirthDateGenerator.setMaximum(oMaxBirthDate.getInternal());
+		lBirthDateGenerator.setRandomFunction(function() {
+			return Math.exp(Math.random()-1);
+		});
+			
 		rank = Date.now();
 		for (i = 0; i < $scope.nameCount; i++) {
 
@@ -52,7 +83,12 @@ customerApp.controller('customerController', function ($scope) {
 			model.setRank(rank);
 			model.setGender((rank % $scope.nameCount) / $scope.nameCount);
 			newCustomer.customerName = model.makeName();
+
+			newCustomer.dates = {
+				birth: lBirthDateGenerator.makeDate()
+			};
 			
+			// Push customer and increment.
 			$scope.data.push(newCustomer);
 			rank++;
 		}

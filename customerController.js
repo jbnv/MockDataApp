@@ -6,16 +6,8 @@ customerApp.controller('customerController', function ($scope) {
 			content: function(row) { return row.customerNumber; }
 		},
 		{
-			title: 'First Name',
-			content: function(row) { return row.customerName.firstname; }
-		},
-		{
-			title: 'MI',
-			content: function(row) { return row.customerName.middleinitial; }
-		},
-		{
-			title: 'Surname',
-			content: function(row) { return row.customerName.surname; }
+			title: 'Name',
+			content: function(row) { return row.customerName.formatted; }
 		},
 		{
 			title: 'Address',

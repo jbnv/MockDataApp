@@ -44,9 +44,6 @@ nameModel = function() {
 				'','beck','berg','blood','fellow','ford','hart','man','maker',
 				'smith','son','ton','stone','weaver','well','wing'
 			],
-			formatName: function (name) { 
-				return name.firstname+' '+name.middleinitial+'. '+name.surname; 
-			},
 			makeRandomName: function(gender,rank) {
 				var name = {};
 				name['firstname'] 	
@@ -58,6 +55,8 @@ nameModel = function() {
 					+ moduloElement(this.surnameSuffixes,rank);
 				name['middleinitial']
 					= getInitial("ABCDEFGHIJKLMNOPQRSTUVWXYZ",rank);
+				name['formatted']
+					= name['firstname']+' '+name['middleinitial']+'. '+name['surname']; 
 				return name;
 			},
 			seed: function() {
@@ -86,15 +85,14 @@ nameModel = function() {
 				'Ramirez','Ramos','Rodriguez','Romero','Rubio','Ruiz',
 				'Sanz','Sanchez','Santos','Serrano','Suarez','Torres','Vazquez','Velasquez'
 			],
-			formatName: function (name) { 
-				return name.firstname+' '+name.surname; 
-			},
 			makeRandomName: function(gender,rank) {
 				var name = {};
 				name['firstname'] 	
 					= getFirstName(this,gender,rank);
 				name['surname']	  
 					= moduloElement(this.surnames,rank);
+				name['formatted']
+					= name['firstname']+' '+name['surname']; 
 				return name;
 			},
 			seed: function() {
@@ -120,9 +118,6 @@ nameModel = function() {
 				'da','gawa','guchi','hara','hiro','hashi','kami','kawa','ma','mizu','moto','mura','nabe',
 				'saki','ta','tou','yashi','zawa','zuki'
 			],
-			formatName: function (name) { 
-				return name.surname+' '+name.firstname; 
-			},
 			makeRandomName: function(gender,rank) {
 				var name = {};
 				name['firstname'] 	
@@ -130,6 +125,8 @@ nameModel = function() {
 				name['surname']	  
 					= moduloElement(this.surnamePrefixes,rank)
 					+ moduloElement(this.surnameSuffixes,rank);
+				name['formatted']
+					= name['surname']+' '+name['firstname']; 
 				return name;
 			},
 			seed: function() {
@@ -159,9 +156,6 @@ nameModel = function() {
 				'schmidt','schafer','schreiber','schneider','steiger','stein',
 				'wald','walter','weber','winkel','ziegler'
 			],
-			formatName: function (name) { 
-				return name.firstname+' '+name.middleinitial+'. '+name.surname; 
-			},
 			makeRandomName: function(gender,rank) {
 				var name = {};
 				name['firstname'] 	
@@ -171,6 +165,8 @@ nameModel = function() {
 					+ moduloElement(this.surnameSuffixes,rank);
 				name['middleinitial']
 					= getInitial("ABDEFGHIJKLMNOPRSTUVWZ",rank);
+				name['formatted']
+					= name['firstname']+' '+name['middleinitial']+'. '+name['surname']; 
 				return name;
 			},
 			seed: function() {
@@ -208,10 +204,6 @@ nameModel = function() {
 		makeName: function() {
 			pattern = namePatterns[patternSlug];
 			return pattern.makeRandomName(gender,rank);
-		},
-		
-		formatNameFunction: function() {
-			return namePatterns[patternSlug].formatName;
 		}
 		
 	}; // return object

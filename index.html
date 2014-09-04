@@ -17,13 +17,18 @@
 
 <nav role="navigation" class="navbar navbar-default">
 	<div class="navbar-header">
-		<ul class="nav navbar-nav">
-			<li><a></a></li> 
-		</ul>
-		<ul class="nav navbar-nav navbar-right">
-			<li><a data-ng-click="makeCustomers();">Generate</a></li>
-			<li><a data-ng-click="init();">Reset</a></li>
-		</ul>
+		<form class="form-inline">
+			<div class="form-group">
+				<label class="sr-only" for="generateNameCount">Count</label>
+				<input type="number" size="5" class="form-control" id="generateNameCount" placeholder="Count" data-ng-model="nameCount">
+			</div>
+			<div class="form-group">
+				<label class="sr-only" for="generateNamePattern">Pattern</label>
+				<input type="text" size="5" class="form-control" id="generateNamePattern" placeholder="Pattern" data-ng-model="namePattern">
+			</div>
+			<button class="btn btn-primary" data-ng-click="makeCustomers();">Generate</button>
+			<button class="btn"             data-ng-click="init();">Reset</button>
+		</form>
 	</div>
 </nav>
 

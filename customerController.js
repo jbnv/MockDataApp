@@ -1,27 +1,28 @@
 customerApp.controller('customerController', function ($scope) {
 
-	$scope.columns = {
-		customerNumber : {
+	$scope.columns = [
+		{
 			title: 'Number',
 			content: function(row) { return row.customerNumber; }
 		},
-		firstName : {
+		{
 			title: 'First Name',
 			content: function(row) { return row.customerName.firstname; }
 		},
-		middleInitial : {
+		{
 			title: 'MI',
 			content: function(row) { return row.customerName.middleinitial; }
 		},
-		surname :  {
+		{
 			title: 'Surname',
 			content: function(row) { return row.customerName.surname; }
 		},
-		address :  {
+		{
 			title: 'Address',
 			content: function(row) { return row.address; }
 		}
-	};
+	];
+	
 	
 	$scope.init = function() {
 		$scope.data = [];

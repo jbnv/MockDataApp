@@ -106,6 +106,13 @@ customerApp.controller('customerController', function ($scope) {
 	$scope.makeCustomers = function() {
 	
 		lAddressModel = new addressModel();
+		
+		// Date constants.
+		dateGenerator = new RandomDateGenerator();
+		oMinBirthDate = new DateMath();
+		oMinBirthDate.addYears(-75);
+		oMaxBirthDate = new DateMath();
+		oMaxBirthDate.addYears(-18);
 				
 		rank = Date.now();
 		for (i = 0; i < $scope.nameCount; i++) {
@@ -123,24 +130,21 @@ customerApp.controller('customerController', function ($scope) {
 			newCustomer.customerName = model.makeName();
 
 			// Dates
-			dateGenerator = new RandomDateGenerator();
 			newCustomer.dates = {};
 			
 			// Date of birth: Make a broad range of age between 18 and 75.
-			oMinBirthDate = new DateMath();
-			oMinBirthDate.addYears(-75);
-			oMaxBirthDate = new DateMath();
-			oMaxBirthDate.addYears(-18);
 			dateGenerator.setMinimum(oMinBirthDate.getInternal());
 			dateGenerator.setMaximum(oMaxBirthDate.getInternal());
 			dateGenerator.setRandomFunction(function() {
 				return 1-Math.exp(Math.random()-1);
 			});
 			newCustomer.dates.birth = dateGenerator.makeDate();
-			console.log('birth',newCustomer.dates.birth);
 		
-			// Date of first purchase: Some time between birth and now.
-			dateGenerator.setMinimum(newCustomer.dates.birth);
+			// Date of first purchase: Some time between 18th birthday and now.
+			o18thBirthday = new DateMath();
+			o18thBirthday.setInternal(newCustomer.dates.birth);
+			o18thBirthday.addYears(18);
+			dateGenerator.setMinimum(o18thBirthday.getInternal());
 			dateGenerator.setMaximumNow();
 			newCustomer.dates.init = dateGenerator.makeDate();
 			

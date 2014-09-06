@@ -22,7 +22,7 @@ DateMath = function() {
 		},
 
 		setInternal: function(o) {
-			internal = o;
+			internal = angular.copy(o);
 		}
 		
 	}; //return

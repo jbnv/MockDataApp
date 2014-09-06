@@ -101,19 +101,7 @@ customerApp.controller('customerController', function ($scope) {
 	$scope.makeCustomers = function() {
 	
 		lAddressModel = new addressModel();
-	
-		// Date of birth: Make a broad range of age between 18 and 75.
-		oMinBirthDate = new DateMath();
-		oMinBirthDate.addYears(-75);
-		oMaxBirthDate = new DateMath();
-		oMaxBirthDate.addYears(-18);
-		lBirthDateGenerator = new RandomDateGenerator();
-		lBirthDateGenerator.setMinimum(oMinBirthDate.getInternal());
-		lBirthDateGenerator.setMaximum(oMaxBirthDate.getInternal());
-		lBirthDateGenerator.setRandomFunction(function() {
-			return Math.exp(Math.random()-1);
-		});
-			
+				
 		rank = Date.now();
 		for (i = 0; i < $scope.nameCount; i++) {
 
@@ -129,9 +117,32 @@ customerApp.controller('customerController', function ($scope) {
 			model.setGender((rank % $scope.nameCount) / $scope.nameCount);
 			newCustomer.customerName = model.makeName();
 
-			newCustomer.dates = {
-				birth: lBirthDateGenerator.makeDate()
-			};
+			// Dates
+			dateGenerator = new RandomDateGenerator();
+			newCustomer.dates = {};
+			
+			// Date of birth: Make a broad range of age between 18 and 75.
+			oMinBirthDate = new DateMath();
+			oMinBirthDate.addYears(-75);
+			oMaxBirthDate = new DateMath();
+			oMaxBirthDate.addYears(-18);
+			dateGenerator.setMinimum(oMinBirthDate.getInternal());
+			dateGenerator.setMaximum(oMaxBirthDate.getInternal());
+			dateGenerator.setRandomFunction(function() {
+				return 1-Math.exp(Math.random()-1);
+			});
+			newCustomer.dates.birth = dateGenerator.makeDate();
+			console.log('birth',newCustomer.dates.birth);
+		
+			// Date of first purchase: Some time between birth and now.
+			dateGenerator.setMinimum(newCustomer.dates.birth);
+			dateGenerator.setMaximumNow();
+			newCustomer.dates.init = dateGenerator.makeDate();
+			
+			// Date of last purchase: Some time between first purchase and now.
+			dateGenerator.setMinimum(newCustomer.dates.init);
+			dateGenerator.setMaximumNow();
+			newCustomer.dates.last = dateGenerator.makeDate();
 
 			// Phone numbers.
 			//TODO Add random factor.

@@ -45,6 +45,10 @@ RandomDateGenerator = function() {
 		setMaximum: function(value) {
 			maxDate = value;
 		},
+
+		setMaximumNow: function() {
+			maxDate = new Date(Date.now());
+		},
 		
 		setRandomFunction: function(value) {
 			randomFunction = value;

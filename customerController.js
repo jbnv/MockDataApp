@@ -161,8 +161,10 @@ customerApp.controller('customerController', function ($scope) {
 				oPhoneNumberModel = new PhoneNumberModel();
 				oPhoneNumberModel.setRank(rank);
 				oPhoneNumberModel.setAreaCode('985');
-				oPhone[oType.data.slug] = oPhoneNumberModel.makePhoneNumber();
-				rank++;
+				if (Math.random() < oType.data.rate) {
+					oPhone[oType.data.slug] = oPhoneNumberModel.makePhoneNumber();
+					rank++;
+				}
 			}
 			newCustomer.phone = oPhone;
 			

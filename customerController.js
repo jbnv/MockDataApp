@@ -66,6 +66,13 @@ customerApp.controller('customerController', function ($scope) {
 		$scope.namePattern = 'USA';
 	};
 	
+	$scope.setNamePattern = function(slug) {
+		$scope.namePattern = slug;
+	}
+	
+	o = new nameModel();
+	$scope.namePatternOptions = o.getPatternOptions();
+	
 	// Generator
 	$scope.nameCount = 10;
 	$scope.namePattern = 'USA';

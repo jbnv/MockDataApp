@@ -20,40 +20,41 @@
 <body data-ng-app="customerApp" data-ng-controller="customerController">
 
 <nav role="navigation" class="navbar navbar-default navbar-fixed-top">
-	<div class="navbar-header">
-		<form class="form-inline">
-			<div class="btn-group">
-				<button 
-					type="button" class="btn btn-default" 
-					data-ng-repeat="column in columns | filter: {visible:false}"
-					data-ng-click="column.visible = true"
-				>{{column.title}}</button>
-			</div>
-		</form>
-	</div>
+        <ul role="navigation" class="nav navbar-nav">
+            <li class="dropdown">
+                <a href="#" data-toggle="dropdown" class="dropdown-toggle">Add Column <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li
+						data-ng-repeat="column in columns | filter: {visible:false}"
+						data-ng-click="column.visible = true"
+					><a href="#">{{column.title}}</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" data-toggle="dropdown" class="dropdown-toggle">Set Name Pattern <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li
+						data-ng-repeat="slug in namePatternOptions"
+						data-ng-click="setNamePattern(slug)"
+					><a href="#">{{slug}}</a></li>
+                </ul>
+            </li>
+			<li><a href="#">
+				<form class="form-inline">
+					<div class="form-group">
+						<label class="sr-only" for="generateNameCount">Count</label>
+						<input type="number" size="5" class="form-control" id="generateNameCount" placeholder="Count" data-ng-model="nameCount">
+					</div>
+				</form>
+			</a></li>
+        </ul>
+        <ul role="navigation" class="nav navbar-nav navbar-right">			
+			<li><a href="#" data-ng-click="makeCustomers();">Generate</a></li>
+			<li><a href="#" data-ng-click="init();">Reset</a></li>
+        </ul>	
 </nav>
 
 <br /><br/ ><br/ ><!-- spacer to move table underneath nav bar -->
-
-<table class="table table-condensed table-hover">
-	<tr>
-		<td>Generate</td>
-		<td>
-			<form class="form-inline">
-				<div class="form-group">
-					<label class="sr-only" for="generateNameCount">Count</label>
-					<input type="number" size="5" class="form-control" id="generateNameCount" placeholder="Count" data-ng-model="nameCount">
-				</div>
-				<div class="form-group">
-					<label class="sr-only" for="generateNamePattern">Pattern</label>
-					<input type="text" size="5" class="form-control" id="generateNamePattern" placeholder="Pattern" data-ng-model="namePattern">
-				</div>
-				<button class="btn btn-primary" data-ng-click="makeCustomers();">Generate</button>
-				<button class="btn"             data-ng-click="init();">Reset</button>
-			</form>
-		</td>
-	</tr>
-</table>
 
 <table class="table table-condensed table-hover">
 	<thead>

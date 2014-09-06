@@ -184,7 +184,7 @@ nameModel = function() {
 	return {
 	
 		getPatternOptions: function() {
-			return Object.keys(namePatterns)
+			return Object.keys(namePatterns);
 		},
 		
 		setPatternSlug: function(value) {

@@ -54,14 +54,20 @@
         </ul>	
 </nav>
 
-<br /><br/ ><br/ ><!-- spacer to move table underneath nav bar -->
+<br /><br/ ><br/ ><br/ ><!-- spacer to move table underneath nav bar -->
 
 <table class="table table-condensed table-hover">
 	<thead>
 		<tr>
 			<th data-ng-repeat="column in columns | filter: {visible:true}">
-				{{column.title}}
-				<button class="btn btn-link" data-ng-click="column.visible = false">X</button>
+				<div class="dropdown">
+					<a href="#" data-toggle="dropdown" class="dropdown-toggle">{{column.title}}</a>
+					<ul class="dropdown-menu">
+						<li
+							data-ng-click="column.visible = false"
+						><a href="#">Remove</a></li>
+					</ul>
+				</div>
 			</th>
 		</tr>
 	</thead>

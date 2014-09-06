@@ -58,7 +58,10 @@
 <table class="table table-condensed table-hover">
 	<thead>
 		<tr>
-			<th data-ng-repeat="column in columns | filter: {visible:true}">{{column.title}}</th>
+			<th data-ng-repeat="column in columns | filter: {visible:true}">
+				{{column.title}}
+				<button class="btn btn-link" data-ng-click="column.visible = false">X</button>
+			</th>
 		</tr>
 	</thead>
 	<tr data-ng-repeat="row in data">

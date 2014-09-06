@@ -24,7 +24,7 @@ nameModel = function() {
 			maleNames: [
 				'Adam','Bill','Bob','Calvin','Donald','Dwight','Frank','Fred','George','Howard',
 				'James','John','Jacob','Jack','Martin','Matthew','Max','Michael',
-				'Paul','Peter','Phil','Roland','Ronald','Samuel','Steve','Theo','Warren','William'
+				'Paul','Peter','Phil','Roland','Ronald','Samuel','Steve','Theo','Warren','Walter','William'
 			],
 			femaleNames: [
 				'Abigail','Alice','Allison','Amanda','Anne','Barbara','Betty','Carol','Cleo','Donna',
@@ -37,12 +37,12 @@ nameModel = function() {
 				'Harding','Taft','Coolidge','Wilson','Truman','Nixon','Ford','Carter','Reagan','Bush','Clinton'
 			],
 			surnamePrefixes: [
-				'Angel','Black','Brown','Copper','Fish','Fox','Gold','Green','King','Little','Long',
-				'Nickel','Red','Silver','Wolf','White','Young'
+				'Angel','Black','Brown','Copper','Fish','Fox','Gold','Green','Hard','King','Little','Living','Long',
+				'Nickel','Old','Peter','Red','Silver','Steven','Wolf','White','Young'
 			],
 			surnameSuffixes: [
-				'','beck','berg','blood','fellow','ford','hart','man','maker',
-				'smith','son','ton','stone','weaver','well','wing'
+				'','beck','berg','blood','fellow','ford','grant','hart','man','maker',
+				'smith','son','ton','stone','weaver','well','wise','wood','wing'
 			],
 			makeRandomName: function(gender,rank) {
 				var name = {};
@@ -146,15 +146,16 @@ nameModel = function() {
 				'Sabine','Silke','Simone','Stefanie','Susanne','Tanja','Ulrike','Ursula'
 			],
 			surnamePrefixes: [
-				'Braun','Deutsch','Eisen','Engel','Fisch','Fleisch','Gott','Gross','Grun','Hahn',
+				'Braun','Deutsch','Eisen','Engel','Fisch','Fleisch',
+				'Gold','Gott','Gross','Grun','Hahn',
 				'Klein','Lang','Midden',
-				'Roth','Sauer','Schwarz','Schwein','Vogel','Wolf','Weiss'
+				'Roth','Sauer','Schwarz','Schwein','Silber','Tannen','Vogel','Wolf','Weiss'
 			],
 			surnameSuffixes: [
-				'','','bauer','beck','berg','dorff','feld','haus','hardt','hower','huber','jager','kramer',
-				'kruger','konig','mann','merkel','richter',
+				'','','bauer','baum','beck','berg','dorff','feld','haus','hardt','holz','hower','huber','jager',
+				'kaiser','kramer','kruger','konig','lager','mann','merkel','peter','richter',
 				'schmidt','schafer','schreiber','schneider','steiger','stein',
-				'wald','walter','weber','winkel','ziegler'
+				'wald','walter','weber','winkel','wurst','ziegler'
 			],
 			makeRandomName: function(gender,rank) {
 				var name = {};

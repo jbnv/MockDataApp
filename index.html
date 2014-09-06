@@ -19,7 +19,7 @@
 
 <body data-ng-app="customerApp" data-ng-controller="customerController">
 
-<nav role="navigation" class="navbar navbar-default">
+<nav role="navigation" class="navbar navbar-default navbar-fixed-top">
 	<div class="navbar-header">
 		<form class="form-inline">
 			<div class="form-group">
@@ -34,9 +34,12 @@
 			<button class="btn"             data-ng-click="init();">Reset</button>
 		</form>
 	</div>
+	
 </nav>
 
-<table class="table">
+<br /><br/ ><br/ ><!-- spacer to move table underneath nav bar -->
+
+<table class="table table-condensed table-hover">
 	<thead>
 		<tr>
 			<th data-ng-repeat="column in columns">{{column.title}}</th>

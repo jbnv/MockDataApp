@@ -22,10 +22,24 @@ customerApp.controller('customerController', function ($scope) {
 				content: function(row) { return row.customerName.formatted; },
 				visible: true,
 				sort: [
-					['customerName.surname','surname A-Z'],
-					['-customerName.surname','surname Z-A'],
-					['customerName.firstname','first name A-Z'],
-					['-customerName.firstname','first name Z-A']
+					['customerName.surname','by surname A-Z'],
+					['-customerName.surname','by surname Z-A'],
+					['customerName.firstname','by first name A-Z'],
+					['-customerName.firstname','by first name Z-A']
+				]
+			},
+			{
+				title: 'Age',
+				content: function(row) { 
+					now = (new Date()).getTime();
+					then = row.dates.birth.getTime();
+					oneYear = 1000*60*60*24*365.25;
+					return Math.floor((now-then)/oneYear); 
+				},
+				visible: true,
+				sort: [
+					['-dates.birth','youngest to oldest'],
+					['dates.birth','oldest to youngest']
 				]
 			},
 			{

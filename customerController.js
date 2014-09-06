@@ -57,10 +57,15 @@ customerApp.controller('customerController', function ($scope) {
 				o = row.dates[slug];
 				return o ? o.toDateString() : null; 
 			}};
+			sortArray = function(slug) { return [
+				['-dates.'+slug,'most recent'],
+				['dates.'+slug,'least recent']
+			]};
 			$scope.columns.push({
 				title: title,
 				content: rowDateFunction(slug),
-				visible: false
+				visible: false,
+				sort: sortArray(slug)
 			});
 		}
 

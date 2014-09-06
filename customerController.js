@@ -14,15 +14,18 @@ customerApp.controller('customerController', function ($scope) {
 		$scope.columns = [
 			{
 				title: 'Number',
-				content: function(row) { return row.customerNumber; }
+				content: function(row) { return row.customerNumber; },
+				visible: true
 			},
 			{
 				title: 'Name',
-				content: function(row) { return row.customerName.formatted; }
+				content: function(row) { return row.customerName.formatted; },
+				visible: true
 			},
 			{
 				title: 'Address',
-				content: function(row) { return row.address; }
+				content: function(row) { return row.address; },
+				visible: false
 			}
 		];
 
@@ -36,7 +39,8 @@ customerApp.controller('customerController', function ($scope) {
 			}};
 			$scope.columns.push({
 				title: title,
-				content: rowDateFunction(slug)
+				content: rowDateFunction(slug),
+				visible: false
 			});
 		}
 
@@ -45,7 +49,8 @@ customerApp.controller('customerController', function ($scope) {
 				field = code[fieldSlug];
 				$scope.columns.push({ 
 					title: field.data ? (field.data.title ? field.data.title : 'NO TITLE') : 'NO DATA',
-					content: field.content ? field.content : function() { return 'NO CONTENT'; } 
+					content: field.content ? field.content : function() { return 'NO CONTENT'; },
+					visible: false
 				});
 			}
 		}

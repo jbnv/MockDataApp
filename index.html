@@ -22,31 +22,47 @@
 <nav role="navigation" class="navbar navbar-default navbar-fixed-top">
 	<div class="navbar-header">
 		<form class="form-inline">
-			<div class="form-group">
-				<label class="sr-only" for="generateNameCount">Count</label>
-				<input type="number" size="5" class="form-control" id="generateNameCount" placeholder="Count" data-ng-model="nameCount">
+			<div class="btn-group">
+				<button 
+					type="button" class="btn btn-default" 
+					data-ng-repeat="column in columns | filter: {visible:false}"
+					data-ng-click="column.visible = true"
+				>{{column.title}}</button>
 			</div>
-			<div class="form-group">
-				<label class="sr-only" for="generateNamePattern">Pattern</label>
-				<input type="text" size="5" class="form-control" id="generateNamePattern" placeholder="Pattern" data-ng-model="namePattern">
-			</div>
-			<button class="btn btn-primary" data-ng-click="makeCustomers();">Generate</button>
-			<button class="btn"             data-ng-click="init();">Reset</button>
 		</form>
 	</div>
-	
 </nav>
 
 <br /><br/ ><br/ ><!-- spacer to move table underneath nav bar -->
 
 <table class="table table-condensed table-hover">
+	<tr>
+		<td>Generate</td>
+		<td>
+			<form class="form-inline">
+				<div class="form-group">
+					<label class="sr-only" for="generateNameCount">Count</label>
+					<input type="number" size="5" class="form-control" id="generateNameCount" placeholder="Count" data-ng-model="nameCount">
+				</div>
+				<div class="form-group">
+					<label class="sr-only" for="generateNamePattern">Pattern</label>
+					<input type="text" size="5" class="form-control" id="generateNamePattern" placeholder="Pattern" data-ng-model="namePattern">
+				</div>
+				<button class="btn btn-primary" data-ng-click="makeCustomers();">Generate</button>
+				<button class="btn"             data-ng-click="init();">Reset</button>
+			</form>
+		</td>
+	</tr>
+</table>
+
+<table class="table table-condensed table-hover">
 	<thead>
 		<tr>
-			<th data-ng-repeat="column in columns">{{column.title}}</th>
+			<th data-ng-repeat="column in columns | filter: {visible:true}">{{column.title}}</th>
 		</tr>
 	</thead>
 	<tr data-ng-repeat="row in data">
-		<td data-ng-repeat="column in columns">{{column.content(row)}}</td>
+		<td data-ng-repeat="column in columns | filter: {visible:true}">{{column.content(row)}}</td>
 	</tr>
 </table>
 

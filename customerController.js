@@ -20,7 +20,13 @@ customerApp.controller('customerController', function ($scope) {
 			{
 				title: 'Name',
 				content: function(row) { return row.customerName.formatted; },
-				visible: true
+				visible: true,
+				sort: [
+					['customerName.surname','surname A-Z'],
+					['-customerName.surname','surname Z-A'],
+					['customerName.firstname','first name A-Z'],
+					['-customerName.firstname','first name Z-A']
+				]
 			},
 			{
 				title: 'Address',
@@ -64,7 +70,12 @@ customerApp.controller('customerController', function ($scope) {
 		$scope.data = [];
 		$scope.nameCount = 10;
 		$scope.namePattern = 'USA';
+		$scope.setSort('customerName.surname');
 	};
+	
+	$scope.setSort = function(predicate) {
+		$scope.sortPredicate = predicate;
+	}
 	
 	$scope.setNamePattern = function(slug) {
 		$scope.namePattern = slug;
@@ -72,10 +83,6 @@ customerApp.controller('customerController', function ($scope) {
 	
 	o = new nameModel();
 	$scope.namePatternOptions = o.getPatternOptions();
-	
-	// Generator
-	$scope.nameCount = 10;
-	$scope.namePattern = 'USA';
 	
 	$scope.makeCustomers = function() {
 	

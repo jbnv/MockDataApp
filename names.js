@@ -37,8 +37,9 @@ nameModel = function() {
 				'Harding','Taft','Coolidge','Wilson','Truman','Nixon','Ford','Carter','Reagan','Bush','Clinton'
 			],
 			surnamePrefixes: [
-				'Angel','Black','Brown','Copper','Fish','Fox','Gold','Green','Hard','King','Little','Living','Long',
-				'Nickel','Old','Peter','Red','Silver','Steven','Wolf','White','Young'
+				'Angel','Black','Brown','Copper','East','Fish','Fox','Gold','Green','Hard','King',
+				'Little','Living','Long',
+				'Nickel','North','Old','Peter','Red','Silver','South','Steven','West','Wil','Wolf','White','Young'
 			],
 			surnameSuffixes: [
 				'','beck','berg','blood','fellow','ford','grant','hart','man','maker',

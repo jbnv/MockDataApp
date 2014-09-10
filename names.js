@@ -1,4 +1,4 @@
-nameModel = function() {
+function nameModel() {
 
 	function moduloElement(array,rank) { return array[rank % array.length]; }
 
@@ -18,7 +18,7 @@ nameModel = function() {
 		return initialString.charAt(rank % initialString.length);
 	}
 
-	var namePatterns = {
+	this.namePatterns = {
 
 		'USA': { 
 			maleNames: [
@@ -179,36 +179,35 @@ nameModel = function() {
 	}; // namePatterns
 
 	// member variables
-	var patternSlug = '';
-	var gender = 0.50;
-	var rank = 0;
-	
-	return {
-	
-		getPatternOptions: function() {
-			return Object.keys(namePatterns);
-		},
+	this.patternSlug = '';
+	this.gender = 0.50;
+	this.rank = 0;
 		
-		setPatternSlug: function(value) {
-			//TODO validate value
-			patternSlug = value;
-		},
-		
-		setGender: function(value) {
-			//TODO validate value - must be [0,1]
-			gender = value;
-		},
-		
-		setRank: function(value) {
-			rank = value;
-		},
-		
-		makeName: function() {
-			pattern = namePatterns[patternSlug];
-			return pattern.makeRandomName(gender,rank);
-		}
-		
-	}; // return object
-	
 }; // nameModel
 
+nameModel.prototype = {
+	
+	getPatternOptions: function() {
+		return Object.keys(this.namePatterns);
+	},
+	
+	setPatternSlug: function(value) {
+		//TODO validate value
+		this.patternSlug = value;
+	},
+	
+	setGender: function(value) {
+		//TODO validate value - must be [0,1]
+		this.gender = value;
+	},
+	
+	setRank: function(value) {
+		this.rank = value;
+	},
+	
+	makeName: function() {
+		pattern = this.namePatterns[this.patternSlug];
+		return pattern.makeRandomName(this.gender,this.rank);
+	}
+		
+}; // nameModel.prototype
